@@ -21,6 +21,7 @@ namespace Rock_Paper_Scissors
     /// </summary>
     public partial class MainWindow : Window
     {
+        int amount;
         TextBox playerTextBox;
         TextBox[] arrayOfPlayers = new TextBox[0];
         public MainWindow()
@@ -56,11 +57,6 @@ namespace Rock_Paper_Scissors
             //generatePlayers();
         }
 
-        private void player_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
-
         private void amountButton_Click(object sender, RoutedEventArgs e)
         {
             players.Children.Clear();
@@ -69,16 +65,22 @@ namespace Rock_Paper_Scissors
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            if (amountTextBox.Text == string.Empty)
+            amountButton_Click(sender, e);
+
+            List<string> names = new List<string>();
+            for (int i = 0; i < amount; i++)
             {
-                MessageBox.Show("Enter amount of players");
+                names.Add(arrayOfPlayers[i].Text);
             }
+
+            RockPaperScissors RPS = new RockPaperScissors(names);
+            RPS.start();
         }
 
 
         private void generatePlayers()
         {
-            int amount = int.Parse(amountTextBox.Text);          
+            amount = int.Parse(amountTextBox.Text);          
             if(amount > arrayOfPlayers.Length)
             {
                 for (int i = arrayOfPlayers.Length; i < amount; i++)
@@ -96,7 +98,7 @@ namespace Rock_Paper_Scissors
                     playerTextBox.Name = "player" + i;
                     playerTextBox.Text = "Player" + (i + 1);
 
-                    playerTextBox.TextChanged += player_TextChanged;
+                    //playerTextBox.TextChanged += player_TextChanged;
                     arrayOfPlayers = arrayOfPlayers.Append(playerTextBox).ToArray();
                 }
             }
@@ -105,12 +107,10 @@ namespace Rock_Paper_Scissors
                 players.Children.Add(arrayOfPlayers[i]);
             }
         }
-
-        
-
         
     }
 }
 
-// TODO: ctrl + V
-// generatePlayers() in text Changed
+// TODO:
+// restrict ctrl + V
+// fix generatePlayers() in amount_TextChanged()

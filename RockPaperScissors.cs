@@ -1,22 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace Rock_Paper_Scissors
 {
     class RockPaperScissors
     {
-        Dictionary<string, string> hierarchy = new Dictionary<string, string>();
-        List<string> players = new List<string>();
-
-        RockPaperScissors()
+        Dictionary<string, string> hierarchy = new Dictionary<string, string>()
         {
-            hierarchy.Add("Rock", "Scissors");
-            hierarchy.Add("Paper", "Rock");
-            hierarchy.Add("Scissors", "Paper");
+            {"Rock", "Scissors"},
+            {"Paper", "Rock"},
+            {"Scissors", "Paper"},
+        };
+
+        List<string> players;
+
+        public RockPaperScissors(List<string> names)
+        {
+            players = names;
         }
 
+        public void start()
+        {
+
+        }
         
+
+
 
     }
 }
