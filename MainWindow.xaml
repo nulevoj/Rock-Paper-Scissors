@@ -5,8 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rock_Paper_Scissors"
         mc:Ignorable="d"
-        Title="Rock Paper Scissors" Height="700" Width="1000">
-    <Grid>
-        
+        Title="Rock Paper Scissors" 
+        Width="1000" Height="700" 
+        >
+
+    <Grid Background="#FFA5C0FF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"
+                Margin="20" Padding="5" 
+                BorderBrush="White" BorderThickness="5" CornerRadius="20"
+                HorizontalAlignment="Left" VerticalAlignment="Top">
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Label Content="Amount of players" FontSize="16" HorizontalContentAlignment="Center" Margin="5" />
+                <TextBox x:Name="amountTextBox" 
+                         BorderBrush="#FF3734AB"
+                         Width="50" Height="30" Margin="5"
+                         Text="2" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="18"
+                         VerticalAlignment="Center" 
+                          TextChanged="amount_TextChanged" PreviewTextInput="amount_PreviewTextInput" PreviewKeyDown="amount_PreviewKeyDown" />
+                <Button x:Name="amountButton" 
+                        Content="Generate" FontSize="14"
+                        Margin="5"
+                        HorizontalAlignment="Center" Width="100" Height="30" 
+                        Click="amountButton_Click" />
+                <Button x:Name="startButton" 
+                        Content="Start" FontSize="14"
+                        Margin="10"
+                        HorizontalAlignment="Center" Width="100" Height="30" 
+                        Click="startButton_Click" />
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="0"
+                Margin="220 20 20 20" Padding="5" 
+                BorderBrush="White" BorderThickness="5" CornerRadius="20"
+                HorizontalAlignment="Left" VerticalAlignment="Top">
+            
+                <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible" Margin="10">
+
+                    <WrapPanel x:Name="players" 
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                       Orientation="Vertical" >
+
+
+
+                    </WrapPanel>
+
+            </ScrollViewer>
+            
+            
+        </Border>
+
+
+        <Border Grid.Row="0" BorderBrush="White" VerticalAlignment="Bottom" Height="6" BorderThickness="3" />
     </Grid>
 </Window>
