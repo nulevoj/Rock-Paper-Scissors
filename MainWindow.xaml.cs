@@ -22,13 +22,11 @@ namespace Rock_Paper_Scissors
     public partial class MainWindow : Window
     {
         TextBox playerTextBox;
-        TextBox[] arrayOfPlayers;
+        TextBox[] arrayOfPlayers = new TextBox[0];
         public MainWindow()
         {
             InitializeComponent();
-            amountTextBox.Text = "2";
             generatePlayers();
-            
         }
 
         private void amount_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -80,41 +78,32 @@ namespace Rock_Paper_Scissors
 
         private void generatePlayers()
         {
-            int amount = int.Parse(amountTextBox.Text);
-            //arrayOfPlayers = new TextBox[amount];
+            int amount = int.Parse(amountTextBox.Text);          
+            if(amount > arrayOfPlayers.Length)
+            {
+                for (int i = arrayOfPlayers.Length; i < amount; i++)
+                {
+                    playerTextBox = new TextBox
+                    {
+                        BorderBrush = Brushes.Blue,
+                        Width = 125,
+                        Height = 25,
+                        Margin = new Thickness(5),
+                        TextAlignment = TextAlignment.Right,
+                        VerticalContentAlignment = VerticalAlignment.Center,
+                        FontSize = 18,
+                    };
+                    playerTextBox.Name = "player" + i;
+                    playerTextBox.Text = "Player" + (i + 1);
 
-            //if(amount <= arrayOfPlayers.Length)
-            //{
-            //    for (int i = 0; i < amount; i++)
-            //    {
-            //        players.Children.Add(arrayOfPlayers[i]);
-            //    }
-            //}
-
-            
-
+                    playerTextBox.TextChanged += player_TextChanged;
+                    arrayOfPlayers = arrayOfPlayers.Append(playerTextBox).ToArray();
+                }
+            }
             for (int i = 0; i < amount; i++)
             {
-                playerTextBox = new TextBox
-                {
-                    BorderBrush = Brushes.Blue,
-                    Width = 125,
-                    Height = 25,
-                    Margin = new Thickness(5),
-                    TextAlignment = TextAlignment.Right,
-                    VerticalContentAlignment = VerticalAlignment.Center,
-                    FontSize = 18,
-                };
-
-                playerTextBox.Name = "player" + i;
-                playerTextBox.Text = "Player" + (i + 1);
-
-                playerTextBox.TextChanged += player_TextChanged;
-                players.Children.Add(playerTextBox);
-                
+                players.Children.Add(arrayOfPlayers[i]);
             }
-            
-
         }
 
         
