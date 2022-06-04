@@ -25,7 +25,7 @@
                          Width="50" Height="30" Margin="5"
                          Text="2" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="18"
                          VerticalAlignment="Center" 
-                          TextChanged="amount_TextChanged" PreviewTextInput="amount_PreviewTextInput" PreviewKeyDown="amount_PreviewKeyDown" />
+                          TextChanged="amountTextBox_TextChanged" PreviewTextInput="amountTextBox_PreviewTextInput" PreviewKeyDown="amountTextBox_PreviewKeyDown" />
                 <Button x:Name="amountButton" 
                         Content="Generate" FontSize="14"
                         Margin="5"
@@ -46,7 +46,7 @@
             
                 <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible" Margin="10">
 
-                    <WrapPanel x:Name="players" 
+                <WrapPanel x:Name="playersPanel" 
                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                        Orientation="Vertical" >
 

@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Rock_Paper_Scissors
 {
@@ -21,16 +12,21 @@ namespace Rock_Paper_Scissors
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
+
         int amount;
-        TextBox playerTextBox;
-        TextBox[] arrayOfPlayers = new TextBox[0];
+        Player[] players = new Player[0];
+
+
+
         public MainWindow()
         {
             InitializeComponent();
             generatePlayers();
         }
 
-        private void amount_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void amountTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Space)
             {
@@ -38,7 +34,7 @@ namespace Rock_Paper_Scissors
             }
         }
 
-        private void amount_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void amountTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
 
@@ -48,7 +44,7 @@ namespace Rock_Paper_Scissors
             }
         }
 
-        private void amount_TextChanged(object sender, TextChangedEventArgs e)
+        private void amountTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (amountTextBox.Text == "" || int.Parse(amountTextBox.Text) < 2)
             {
@@ -59,7 +55,7 @@ namespace Rock_Paper_Scissors
 
         private void amountButton_Click(object sender, RoutedEventArgs e)
         {
-            players.Children.Clear();
+            playersPanel.Children.Clear();
             generatePlayers();
         }
 
@@ -67,44 +63,38 @@ namespace Rock_Paper_Scissors
         {
             amountButton_Click(sender, e);
 
-            List<string> names = new List<string>();
+            List<Player> finalPlayers = new List<Player>();
+    
             for (int i = 0; i < amount; i++)
             {
-                names.Add(arrayOfPlayers[i].Text);
+                finalPlayers.Add(players[i]);
             }
 
-            RockPaperScissors RPS = new RockPaperScissors(names);
+            RockPaperScissors RPS = new RockPaperScissors(finalPlayers);
             RPS.start();
         }
 
 
         private void generatePlayers()
         {
-            amount = int.Parse(amountTextBox.Text);          
-            if(amount > arrayOfPlayers.Length)
+            amount = int.Parse(amountTextBox.Text);
+            if(amount > players.Length)
             {
-                for (int i = arrayOfPlayers.Length; i < amount; i++)
+                Player player;
+                for (int i = players.Length; i < amount; i++)
                 {
-                    playerTextBox = new TextBox
-                    {
-                        BorderBrush = Brushes.Blue,
-                        Width = 125,
-                        Height = 25,
-                        Margin = new Thickness(5),
-                        TextAlignment = TextAlignment.Right,
-                        VerticalContentAlignment = VerticalAlignment.Center,
-                        FontSize = 18,
-                    };
-                    playerTextBox.Name = "player" + i;
-                    playerTextBox.Text = "Player" + (i + 1);
+                    player = new Player();
+                    // !!!
+                    players = players.Append(player).ToArray();
 
-                    //playerTextBox.TextChanged += player_TextChanged;
-                    arrayOfPlayers = arrayOfPlayers.Append(playerTextBox).ToArray();
+                    players[players.Length - 1].textBox.Name = "player" + i;
+                    players[players.Length - 1].textBox.Text = "Player" + (i + 1);
+                    //players[players.Length - 1].textBox.TextChanged += player_TextChanged;
                 }
             }
             for (int i = 0; i < amount; i++)
             {
-                players.Children.Add(arrayOfPlayers[i]);
+                playersPanel.Children.Add(players[i].textBox);
             }
         }
         

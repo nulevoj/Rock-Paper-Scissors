@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Windows;
 
 namespace Rock_Paper_Scissors
 {
     class RockPaperScissors
     {
-        int roundN;
+        int roundNumber;
+
+        List<Player> players;
+        List<Player> remainingPlayers;
+        List<List<Player>> teams = new List<List<Player>>();
 
         Dictionary<string, string> hierarchy = new Dictionary<string, string>()
         {
@@ -16,49 +18,51 @@ namespace Rock_Paper_Scissors
             {"Scissors", "Paper"},
         };
 
-        List<string> players;
-        List<string> remaining;
-        List<List<string>> teams;
-
-        public RockPaperScissors(List<string> names)
+        public RockPaperScissors(List<Player> finalPlayers)
         {
-            players = names;
-            roundN = 0;
+            players = finalPlayers;
+            roundNumber = 0;
         }
 
         public void start()
         {
             // what is better: recursion or while ???
 
-            remaining = players;
+            remainingPlayers = players;
 
-            do
-            {
-                roundN++;
+            //do
+            //{
+                roundNumber++;
                 splitIntoTeams();
                 round();
-            } while (remaining.Count > 0);
+            //} while (remainingPlayers.Count > 0);
             
         }
 
         private void splitIntoTeams()
         {
             int rand;
-            List<string> team;
+            List<Player> team;
 
-            for (int i = 2; i < remaining.Count; i += 3)
+            for (int i = 2; i < remainingPlayers.Count; i += 3)
             {
-                team = new List<string>();
+                team = new List<Player>();
 
                 for (; i < 3; i++)
                 {
-                    rand = new Random().Next(remaining.Count);
-                    team.Add(remaining[rand]);
-                    remaining.RemoveAt(rand);
+                    rand = new Random().Next(remainingPlayers.Count);
+                    team.Add(remainingPlayers[rand]);
+                    remainingPlayers.RemoveAt(rand);
                 }
+                teams.Add(team);
             }
 
-            foreach (string s in remaining)
+            if(teams.Count == 0)
+            {
+                team = new List<Player>();
+                teams.Add(team);
+            }
+            foreach (Player s in remainingPlayers)
             {
                 teams[new Random().Next(teams.Count)].Add(s);
             }
@@ -66,7 +70,22 @@ namespace Rock_Paper_Scissors
 
         private void round()
         {
-            
+            //bool boolean;
+
+            //foreach(List<Player> item in teams)
+            //{
+            //    if(item.Count == 1)
+            //    {
+
+            //    }
+            //}
+
+
+        }
+
+        private void fight()
+        {
+
         }
         
         // TODO: make class Player
