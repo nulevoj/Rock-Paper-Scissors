@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 
 namespace Rock_Paper_Scissors
 {
@@ -35,6 +37,7 @@ namespace Rock_Paper_Scissors
                 roundNumber++;
                 splitIntoTeams();
                 round();
+            countRemainingPlayers();
             //} while (remainingPlayers.Count > 0);
             
         }
@@ -70,25 +73,49 @@ namespace Rock_Paper_Scissors
 
         private void round()
         {
-            //bool boolean;
-
-            //foreach(List<Player> item in teams)
-            //{
-            //    if(item.Count == 1)
-            //    {
-
-            //    }
-            //}
-
-
+            do
+            {
+                foreach (List<Player> item in teams)
+                {
+                    if (item.Count == 1)
+                    {
+                        //drawings
+                        MessageBox.Show("win? "+ item[0]);
+                        teams.Remove(item);
+                    }
+                    else
+                    {
+                        fight(item);
+                    }
+                }
+            } while (teams.Count() > 0);
+            
         }
 
-        private void fight()
+        private void fight(List<Player> team)
         {
+            foreach(Player item in team)
+            {
+                int rand = new Random().Next(hierarchy.Count);
+                item.choice = hierarchy.ElementAt(rand).Key;
+            }
+
+
 
         }
         
-        // TODO: make class Player
+        private void countRemainingPlayers()
+        {
+            remainingPlayers = new List<Player>();
+
+            foreach (List<Player> item in teams)
+            {
+                foreach (var player in item)
+                {
+                    remainingPlayers.Add(player);
+                }
+            }
+        }
 
 
     }

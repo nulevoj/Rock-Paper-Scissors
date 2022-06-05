@@ -104,3 +104,4 @@ namespace Rock_Paper_Scissors
 // TODO:
 // restrict ctrl + V
 // fix generatePlayers() in amount_TextChanged()
+// generatePlayers() and drawings in separate class

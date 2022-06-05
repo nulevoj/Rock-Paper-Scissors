@@ -9,8 +9,10 @@ namespace Rock_Paper_Scissors
 {
     class Player
     {
-        public string name;
         public int place;
+        public string name;
+        public string choice;
+
         public TextBox textBox = new TextBox
         {
             BorderBrush = Brushes.Blue,
