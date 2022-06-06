@@ -35,7 +35,7 @@ namespace Rock_Paper_Scissors
                 do
                 {
                     round();
-                } while (teams.Count() > 0);
+                } while (teamsCheck());
                 countRemainingPlayers();
             } while (remainingPlayers.Count > 1);
         }
@@ -59,7 +59,7 @@ namespace Rock_Paper_Scissors
                 teams.Add(team);
             }
 
-            if(teams.Count == 0)
+            if (teams.Count == 0)
             {
                 team = new List<Player>();
                 teams.Add(team);
@@ -73,7 +73,7 @@ namespace Rock_Paper_Scissors
         private void round()
         {
             roundNumber++;
-            
+
             foreach (List<Player> item in teams)
             {
                 if (item.Count > 1)
@@ -82,26 +82,33 @@ namespace Rock_Paper_Scissors
                 }
 
                 MainWindow.draw(item, roundNumber);
-
-                if (item.Count == 1)
-                {
-                    teams.Remove(item); // ??? !!!
-                }
             }
         }
 
         private void fight(List<Player> team)
         {
-            foreach(Player item in team)
+            foreach (Player item in team)
             {
                 int rand = new Random().Next(hierarchy.Count);
                 item.choice = hierarchy.ElementAt(rand).Key;
             }
 
-            
 
 
-            
+
+
+        }
+
+        private bool teamsCheck()
+        {
+            foreach (List<Player> item in teams)
+            {
+                if(item.Count > 1)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         
         private void countRemainingPlayers()
