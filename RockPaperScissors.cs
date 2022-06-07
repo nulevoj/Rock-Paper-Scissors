@@ -17,7 +17,7 @@ namespace Rock_Paper_Scissors
 
         List<Player> players;
         List<Player> remainingPlayers;
-        List<List<Player>> teams = new List<List<Player>>();
+        List<List<Player>> teams;
 
         public static readonly Dictionary<string, string> hierarchy = new Dictionary<string, string>()
         {
@@ -52,6 +52,7 @@ namespace Rock_Paper_Scissors
             int rand;
             List<Player> team;
 
+            teams = new List<List<Player>>();
             for (int i = 2; i < remainingPlayers.Count;)
             {
                 team = new List<Player>();
@@ -212,6 +213,7 @@ namespace Rock_Paper_Scissors
                 }
             }
         }
+
 
     }
 }
