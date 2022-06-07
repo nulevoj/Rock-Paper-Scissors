@@ -72,6 +72,7 @@ namespace Rock_Paper_Scissors
 
             for (int i = 0; i < amount; i++)
             {
+                players[i].name = players[i].textBox.Text;
                 finalPlayers.Add(players[i]);
             }
 
@@ -105,6 +106,7 @@ namespace Rock_Paper_Scissors
 
         internal static void draw(List<Player> team, int roundNumber)
         {
+
             // team contains 1-5 players
 
 
