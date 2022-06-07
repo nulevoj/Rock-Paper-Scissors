@@ -12,9 +12,6 @@ namespace Rock_Paper_Scissors
         int paperAmount;
         int scissorsAmount;
 
-        string winnerTool;
-        string loserTool;
-
         bool fightIsEnd = false;
         
 
@@ -55,11 +52,11 @@ namespace Rock_Paper_Scissors
             int rand;
             List<Player> team;
 
-            for (int i = 2; i < remainingPlayers.Count; i += 3)
+            for (int i = 2; i < remainingPlayers.Count;)
             {
                 team = new List<Player>();
 
-                for (; i < 3; i++)
+                for (int j = 0; j < 3; j++)
                 {
                     rand = new Random().Next(remainingPlayers.Count);
                     team.Add(remainingPlayers[rand]);
@@ -74,9 +71,9 @@ namespace Rock_Paper_Scissors
                 team = new List<Player>();
                 teams.Add(team);
             }
-            foreach (Player s in remainingPlayers)
+            foreach (Player player in remainingPlayers)
             {
-                teams[new Random().Next(teams.Count)].Add(s);
+                teams[new Random().Next(teams.Count)].Add(player);
             }
         }
 
@@ -161,7 +158,10 @@ namespace Rock_Paper_Scissors
         {
             fightIsEnd = true;
 
-            if(rockAmount == 0)
+            string winnerTool;
+            string loserTool = "";
+
+            if (rockAmount == 0)
             {
                 winnerTool = "Scissors";
                 loserTool = "Paper";
@@ -218,6 +218,8 @@ namespace Rock_Paper_Scissors
 
 
 // TODO:
+
+// remove hierarchy
 
 // add Readme
 

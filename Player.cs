@@ -8,9 +8,9 @@ namespace Rock_Paper_Scissors
 {
     class Player
     {
-        public int place;
         public string name;
         public string choice;
+        //public int place;
 
         public TextBox textBox = new TextBox
         {
