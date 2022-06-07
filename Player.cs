@@ -8,9 +8,9 @@ namespace Rock_Paper_Scissors
 {
     class Player
     {
+        //public int place;
         public string name;
         public string choice;
-        //public int place;
 
         public TextBox textBox = new TextBox
         {
@@ -25,8 +25,8 @@ namespace Rock_Paper_Scissors
 
         public void choose()
         {
-            int rand = new Random().Next(RockPaperScissors.hierarchy.Count);
-            choice = RockPaperScissors.hierarchy.ElementAt(rand).Key;
+            int rand = new Random().Next(RockPaperScissors.tools.Count);
+            choice = RockPaperScissors.tools.ElementAt(rand);
         }
 
 

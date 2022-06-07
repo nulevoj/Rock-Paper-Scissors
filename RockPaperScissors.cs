@@ -19,12 +19,12 @@ namespace Rock_Paper_Scissors
         List<Player> remainingPlayers;
         List<List<Player>> teams;
 
-        public static readonly Dictionary<string, string> hierarchy = new Dictionary<string, string>()
-        {
-            {"Rock", "Scissors"},
-            {"Paper", "Rock"},
-            {"Scissors", "Paper"},
-        };
+        public static List<string> tools = new List<string>
+            {
+                "Rock",
+                "Paper",
+                "Scissors",
+            };
 
         public RockPaperScissors(List<Player> finalPlayers)
         {
@@ -221,7 +221,7 @@ namespace Rock_Paper_Scissors
 
 // TODO:
 
-// remove hierarchy
+// 
 
 // add Readme
 
