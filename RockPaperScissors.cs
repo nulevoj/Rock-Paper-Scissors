@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
 
 namespace Rock_Paper_Scissors
 {
@@ -13,7 +11,7 @@ namespace Rock_Paper_Scissors
         List<Player> remainingPlayers;
         List<List<Player>> teams = new List<List<Player>>();
 
-        Dictionary<string, string> hierarchy = new Dictionary<string, string>()
+        public static readonly Dictionary<string, string> hierarchy = new Dictionary<string, string>()
         {
             {"Rock", "Scissors"},
             {"Paper", "Rock"},
@@ -78,20 +76,28 @@ namespace Rock_Paper_Scissors
             {
                 if (item.Count > 1)
                 {
+                    chooseTools();
                     fight(item);
                 }
 
                 MainWindow.draw(item, roundNumber);
             }
         }
+        
+        private void chooseTools()
+        {
+            foreach (List<Player> team in teams)
+            {
+                foreach (Player player in team)
+                {
+                    player.choose();
+                }
+            }
+        }
 
         private void fight(List<Player> team)
         {
-            foreach (Player item in team)
-            {
-                int rand = new Random().Next(hierarchy.Count);
-                item.choice = hierarchy.ElementAt(rand).Key;
-            }
+            chooseTools();
 
 
 
@@ -123,5 +129,20 @@ namespace Rock_Paper_Scissors
                 }
             }
         }
-    }
+
+
+        
+
+
 }
+}
+
+
+// TODO:
+
+// delegate ?
+
+// add Readme
+
+// restrict ctrl + V in amountTextBox
+// fix generatePlayers() in amount_TextChanged() : playersPanel - Null exception

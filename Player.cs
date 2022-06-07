@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -21,7 +23,11 @@ namespace Rock_Paper_Scissors
             FontSize = 18,
         };
 
-
+        public void choose()
+        {
+            int rand = new Random().Next(RockPaperScissors.hierarchy.Count);
+            choice = RockPaperScissors.hierarchy.ElementAt(rand).Key;
+        }
 
 
     }

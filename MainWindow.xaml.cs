@@ -28,7 +28,7 @@ namespace Rock_Paper_Scissors
             MainWindow.mainWindow = this;
 
             amountTextBox.Text = "2";
-            generatePlayers();
+            amountButton_Click(null, null);
         }
 
         private void amountTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -79,7 +79,6 @@ namespace Rock_Paper_Scissors
             RPS.start();
         }
 
-
         private void generatePlayers()
         {
             playersPanel.Children.Clear();
@@ -107,14 +106,13 @@ namespace Rock_Paper_Scissors
         internal static void draw(List<Player> team, int roundNumber)
         {
             // team contains 1-5 players
+
+
+
         }
+
+
+
         
     }
 }
-
-// TODO:
-
-// add Readme
-
-// restrict ctrl + V in amountTextBox
-// fix generatePlayers() in amount_TextChanged() : playersPanel - Null exception
