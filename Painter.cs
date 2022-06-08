@@ -12,20 +12,22 @@ namespace Rock_Paper_Scissors
         int roundNumber = 0;
         int teamNumber;
 
-
-
-
+        List<Player> players;
 
         StackPanel currentRound;
         StackPanel currentTeam;
         StackPanel currentFight;
 
-
+        public Painter(List<Player> players)
+        {
+            this.players = players;
+        }
 
         public void drawRound()
         {
-            teamNumber = 0;
             roundNumber++;
+            teamNumber = 0;
+            
             Border border = new Border()
             {
                 BorderBrush = Brushes.White,
@@ -107,9 +109,11 @@ namespace Rock_Paper_Scissors
         {
             Border border = new Border()
             {
-                BorderBrush = Brushes.Blue,
+                BorderBrush = Brushes.White,
                 BorderThickness = new Thickness(5),
             };
+            
+            border.MouseDown += new System.Windows.Input.MouseButtonEventHandler(borderClick);
 
             DockPanel dockPanel = new DockPanel();
             Label label = new Label()
@@ -124,38 +128,64 @@ namespace Rock_Paper_Scissors
             Image image = new Image();
             image.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/" + player.choice +".png"));
             image.Height = image.Width = 50;
-            
-
-
-
-
 
             dockPanel.Children.Add(label);
             dockPanel.Children.Add(image);
 
-
             border.Child = dockPanel;
 
+            player.borders.Add(border);
+
             currentFight.Children.Add(border);
-
-
         }
 
-        
-
-        public void drawWinner(List<Player> team)
+        private void borderClick(object sender, RoutedEventArgs e)
         {
-            drawFight(team);
+            Player selectedPlayer = null;
+            foreach(Player player in players)
+            {
+                if (player.borders.Contains((Border)sender))
+                {
+                    selectedPlayer = player;
+                    break;
+                }
+            }
+
+
+            SolidColorBrush color;
+            if (((Border)sender).BorderBrush != Brushes.Red)
+            {
+                color = Brushes.Red;
+            }
+            else
+            {
+                color = Brushes.White;
+            }
+
+            foreach (Player player in players)
+            {
+                foreach (Border border in player.borders)
+                {
+                    border.BorderBrush = Brushes.White;
+                }
+            }
+
+            foreach (Border border in selectedPlayer.borders)
+            {
+                border.BorderBrush = color;
+            }
+
+
+
         }
+
+
 
     }
 }
 
 // TODO:
 
-// refactoring class Painter
+// refactor class Painter
+// fix borderClick(*)
 
-// add Readme
-
-// restrict ctrl + V in amountTextBox
-// fix generatePlayers() in amount_TextChanged() : playersPanel - Null exception
