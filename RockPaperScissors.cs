@@ -6,7 +6,6 @@ namespace Rock_Paper_Scissors
 {
     class RockPaperScissors
     {
-        int roundNumber = 0;
 
         int rockAmount;
         int paperAmount;
@@ -80,8 +79,7 @@ namespace Rock_Paper_Scissors
 
         private void round()
         {
-            roundNumber++;
-            painter.drawRound(roundNumber);
+            painter.drawRound();
             foreach (List<Player> team in teams)
             {
                 painter.drawTeam();

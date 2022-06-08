@@ -65,6 +65,8 @@ namespace Rock_Paper_Scissors
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
+            battleground.Children.Clear();
+
             amountButton_Click(sender, e);
 
             List<Player> finalPlayers = new List<Player>();
