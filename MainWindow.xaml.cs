@@ -12,7 +12,6 @@ namespace Rock_Paper_Scissors
     /// </summary>
     public partial class MainWindow : Window
     {
-
         int amount;
         Player[] players = new Player[0];
         private static MainWindow mainWindow;
@@ -107,7 +106,7 @@ namespace Rock_Paper_Scissors
         internal static void draw(List<Player> team, int roundNumber)
         {
 
-            // team contains 1-5 players
+            // team contains 1-5 players. Overload???
 
 
 
@@ -118,3 +117,12 @@ namespace Rock_Paper_Scissors
         
     }
 }
+
+// TODO:
+
+// draw(*)
+
+// add Readme
+
+// restrict ctrl + V in amountTextBox
+// fix generatePlayers() in amount_TextChanged() : playersPanel - Null exception

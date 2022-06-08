@@ -217,13 +217,3 @@ namespace Rock_Paper_Scissors
 
     }
 }
-
-
-// TODO:
-
-// 
-
-// add Readme
-
-// restrict ctrl + V in amountTextBox
-// fix generatePlayers() in amount_TextChanged() : playersPanel - Null exception
