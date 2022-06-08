@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
 
 namespace Rock_Paper_Scissors
 {
@@ -12,7 +11,7 @@ namespace Rock_Paper_Scissors
         int scissorsAmount;
 
         bool fightIsEnd = false;
-        
+
 
         List<Player> players;
         List<Player> remainingPlayers;
@@ -43,7 +42,6 @@ namespace Rock_Paper_Scissors
                 } while (teamsCheck());
                 countRemainingPlayers();
             } while (remainingPlayers.Count > 1);
-            MessageBox.Show("Winner: " + remainingPlayers[0].name + " - " + remainingPlayers[0].choice);
         }
 
         private void splitIntoTeams()
@@ -89,12 +87,12 @@ namespace Rock_Paper_Scissors
                     do
                     {
                         chooseTools(team);
-                        painter.drawFight();
+                        painter.drawFight(team);
                         if (drawCheck(team)) { continue; }
                         fight(team);
                     } while (!fightIsEnd);
                 }
-                painter.drawWinner();
+                painter.drawFight(team); // draw winners
             }
         }
 
@@ -104,17 +102,6 @@ namespace Rock_Paper_Scissors
             {
                 player.choose();
             }
-
-            if (true)
-            {
-                string s = "";
-                foreach (Player player in team)
-                {
-                    s += player.name + " - " + player.choice + "\n";
-                }
-                MessageBox.Show(s);
-            }
-
         }
 
         private bool drawCheck(List<Player> team)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,7 +9,6 @@ namespace Rock_Paper_Scissors
 {
     class Player
     {
-        //public int place;
         public string name;
         public string choice;
 
@@ -22,6 +22,10 @@ namespace Rock_Paper_Scissors
             VerticalContentAlignment = VerticalAlignment.Center,
             FontSize = 18,
         };
+
+        public List<Border> borders = new List<Border>();
+
+            
 
         public void choose()
         {

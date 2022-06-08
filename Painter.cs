@@ -1,28 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Rock_Paper_Scissors
 {
     class Painter
     {
-        List<Border> rounds = new List<Border>();
-        List<Border> teams;
+        int roundNumber = 0;
+        int teamNumber;
+
+
+
 
 
         StackPanel currentRound;
         StackPanel currentTeam;
-
+        StackPanel currentFight;
 
 
 
         public void drawRound()
         {
-            teams = new List<Border>();
-
+            teamNumber = 0;
+            roundNumber++;
             Border border = new Border()
             {
                 BorderBrush = Brushes.White,
@@ -31,8 +34,8 @@ namespace Rock_Paper_Scissors
             DockPanel dockPanel = new DockPanel();
             Label label = new Label()
             {
-                Content = "Round " + (rounds.Count + 1),
-                HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
+                Content = "Round " + roundNumber,
+                HorizontalAlignment = HorizontalAlignment.Center,
                 FontSize = 20,
                 // color
             };
@@ -48,12 +51,13 @@ namespace Rock_Paper_Scissors
             dockPanel.Children.Add(currentRound);
 
             border.Child = dockPanel;
-            rounds.Add(border);
             MainWindow.mainWindow.battleground.Children.Add(border);
         }
 
         public void drawTeam()
         {
+            teamNumber++;
+
             Border border = new Border()
             {
                 BorderBrush = Brushes.Gray,
@@ -62,8 +66,8 @@ namespace Rock_Paper_Scissors
             DockPanel dockPanel = new DockPanel();
             Label label = new Label()
             {
-                Content = "Team" + teams.Count + 1,
-                HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch,
+                Content = "Team" + teamNumber,
+                HorizontalAlignment = HorizontalAlignment.Center,
                 FontSize = 18,
                 // color
             };
@@ -83,22 +87,66 @@ namespace Rock_Paper_Scissors
 
         }
 
-        public void drawFight()
+        public void drawFight(List<Player> team)
         {
+
+            currentFight = new StackPanel()
+            {
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+            };
+            currentTeam.Children.Add(currentFight);
+
+            foreach (Player player in team)
+            {
+                drawFighter(player);
+            }
+        }
+
+        private void drawFighter(Player player)
+        {
+            Border border = new Border()
+            {
+                BorderBrush = Brushes.Blue,
+                BorderThickness = new Thickness(5),
+            };
+
+            DockPanel dockPanel = new DockPanel();
+            Label label = new Label()
+            {
+                Content = player.name,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                FontSize = 16,
+                // color
+            };
+            DockPanel.SetDock(label, Dock.Top);
+
+            Image image = new Image();
+            image.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/" + player.choice +".png"));
+            image.Height = image.Width = 50;
+            
+
+
+
+
+
+            dockPanel.Children.Add(label);
+            dockPanel.Children.Add(image);
+
+
+            border.Child = dockPanel;
+
+            currentFight.Children.Add(border);
+
 
         }
 
-        public void drawWinner()
+        
+
+        public void drawWinner(List<Player> team)
         {
-
+            drawFight(team);
         }
-
-        private void drawPlayer()
-        {
-            Border border = new Border();
-            // border
-        }
-
 
     }
 }
