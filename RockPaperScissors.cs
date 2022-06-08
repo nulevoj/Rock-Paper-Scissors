@@ -13,7 +13,7 @@ namespace Rock_Paper_Scissors
         bool fightIsEnd = false;
 
 
-        List<Player> players;
+        private readonly List<Player> players;
         List<Player> remainingPlayers;
         List<List<Player>> teams;
         public static List<string> tools = new List<string>
@@ -22,11 +22,12 @@ namespace Rock_Paper_Scissors
                 "Paper",
                 "Scissors",
             };
-        Painter painter = new Painter();
+        Painter painter;
 
         public RockPaperScissors(List<Player> finalPlayers)
         {
             players = finalPlayers;
+            painter = new Painter(players);
         }
 
         public void start()
