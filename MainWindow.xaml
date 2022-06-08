@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rock_Paper_Scissors"
         mc:Ignorable="d"
-        Title="Rock Paper Scissors" 
+        
+        Title="Rock Paper Scissors" Icon="/icon.png"
         Width="1000" Height="700"
+        WindowState="Maximized"
         >
 
     <Grid Background="#FFA5C0FF">
