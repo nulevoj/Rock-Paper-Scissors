@@ -18,13 +18,13 @@ namespace Rock_Paper_Scissors
         List<Player> players;
         List<Player> remainingPlayers;
         List<List<Player>> teams;
-
         public static List<string> tools = new List<string>
             {
                 "Rock",
                 "Paper",
                 "Scissors",
             };
+        Painter painter = new Painter();
 
         public RockPaperScissors(List<Player> finalPlayers)
         {
@@ -81,20 +81,22 @@ namespace Rock_Paper_Scissors
         private void round()
         {
             roundNumber++;
-
+            painter.drawRound(roundNumber);
             foreach (List<Player> team in teams)
             {
+                painter.drawTeam();
                 if (team.Count > 1)
                 {
                     fightIsEnd = false;
                     do
                     {
                         chooseTools(team);
+                        painter.drawFight();
                         if (drawCheck(team)) { continue; }
                         fight(team);
-                        MainWindow.draw(team, roundNumber);
                     } while (!fightIsEnd);
                 }
+                painter.drawWinner();
             }
         }
 
