@@ -111,6 +111,7 @@ namespace Rock_Paper_Scissors
             {
                 BorderBrush = Brushes.White,
                 BorderThickness = new Thickness(5),
+                Width = 80,
             };
             
             border.MouseDown += new System.Windows.Input.MouseButtonEventHandler(borderClick);
@@ -185,6 +186,6 @@ namespace Rock_Paper_Scissors
 
 // TODO:
 
+// adjust sizes
 // refactor class Painter
-// fix borderClick(*)
 
