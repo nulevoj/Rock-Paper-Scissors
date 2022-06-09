@@ -32,8 +32,7 @@ namespace Rock_Paper_Scissors
 
         public void start()
         {
-            remainingPlayers = players;
-
+            remainingPlayers = new List<Player>(players);
             do
             {
                 splitIntoTeams();

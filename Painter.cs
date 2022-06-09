@@ -12,7 +12,7 @@ namespace Rock_Paper_Scissors
         int roundNumber = 0;
         int teamNumber;
 
-        List<Player> players;
+        private readonly List<Player> players;
 
         StackPanel currentRound;
         StackPanel currentTeam;
@@ -142,7 +142,7 @@ namespace Rock_Paper_Scissors
         private void borderClick(object sender, RoutedEventArgs e)
         {
             Player selectedPlayer = null;
-            foreach(Player player in players)
+            foreach (Player player in players)
             {
                 if (player.borders.Contains((Border)sender))
                 {
@@ -178,7 +178,6 @@ namespace Rock_Paper_Scissors
 
 
         }
-        //
 
 
     }
