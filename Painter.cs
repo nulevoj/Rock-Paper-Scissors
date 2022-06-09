@@ -12,7 +12,7 @@ namespace Rock_Paper_Scissors
         int roundNumber = 0;
         int teamNumber;
 
-        List<Player> players;
+        private readonly List<Player> players;
 
         StackPanel currentRound;
         StackPanel currentTeam;
@@ -111,6 +111,7 @@ namespace Rock_Paper_Scissors
             {
                 BorderBrush = Brushes.White,
                 BorderThickness = new Thickness(5),
+                Width = 80,
             };
             
             border.MouseDown += new System.Windows.Input.MouseButtonEventHandler(borderClick);
@@ -142,7 +143,7 @@ namespace Rock_Paper_Scissors
         private void borderClick(object sender, RoutedEventArgs e)
         {
             Player selectedPlayer = null;
-            foreach(Player player in players)
+            foreach (Player player in players)
             {
                 if (player.borders.Contains((Border)sender))
                 {
@@ -178,7 +179,6 @@ namespace Rock_Paper_Scissors
 
 
         }
-        //
 
 
     }
@@ -186,6 +186,6 @@ namespace Rock_Paper_Scissors
 
 // TODO:
 
+// adjust sizes
 // refactor class Painter
-// fix borderClick(*)
 

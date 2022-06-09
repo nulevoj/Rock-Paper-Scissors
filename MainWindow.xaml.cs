@@ -112,5 +112,7 @@ namespace Rock_Paper_Scissors
 
 // TODO:
 
+// 
+
 // restrict ctrl + V in amountTextBox
 // fix generatePlayers() in amount_TextChanged() : playersPanel - Null exception
